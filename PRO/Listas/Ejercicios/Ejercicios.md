@@ -6,6 +6,7 @@ fav_cities = ['Tokio', 'Osaka', 'London', 'Madrid', 'Barcelona']
 
 ***Ejercicio "isogram"***: Determina si una cadena de texto dada es un isograma, es decir, si no se repite ninguna letra.
 
-![[Pasted image 20241117223146.png|650]]
+
+![[Captura de pantalla 2024-11-17 222950.png]]
 
 
