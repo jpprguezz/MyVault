@@ -384,4 +384,11 @@ Y en el caso de que busquemos algún elemento que existe más de una vez en la l
 
 ### Preferencia de un elemento
 
-En el caso de que quisiéramos comprobar 
+En el caso de que quisiéramos comprobar si un elemento se encuentra en una lista, lo haríamos al igual que en los strings, usando el `in`:
+```python
+>>> 'Shovel' in minecraft_objects
+True
+
+>>> 'Hammer' in minecraft_objects
+False
+```
