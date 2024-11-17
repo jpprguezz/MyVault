@@ -359,3 +359,29 @@ Las única diferencia se puede ver cuando en las id's que quedan antes y despué
 ```
 
 En términos de eficiencia, hay que saber que `clear()` siempre será más rápido que reiniciar la lista.
+
+
+### Encontrar un elementos
+
+Si quisiéramos encontrar el índice concreto de algún elemento en la lista, usaríamos al igual que en los strings, la función `index()`:
+
+```python
+>>> minecraft_objects = ['Pickaxe', 'Shovel', 'Sword', 'Axe']
+>>> minecraft_objects.index('Axe')
+3
+```
+
+Aunque si intentamos buscar un elemento que no se encuentra en la lista, el intento de búsqueda nos devolverá un error.
+
+```python
+>>> minecraft_objects.index('Hammer')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: 'Hammer' is not in list
+```
+
+Y en el caso de que busquemos algún elemento que existe más de una vez en la lista, el comando nos devolverá el primer elemento que encuentre con ese nombre.
+
+### Preferencia de un elemento
+
+En el caso de que quisiéramos comprobar 
