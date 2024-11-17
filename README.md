@@ -1,2 +1,2 @@
 # MyVault
-Notas de MyVault en Obsidian (a)
+Notas de MyVault en Obsidian
