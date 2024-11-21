@@ -382,7 +382,7 @@ ValueError: 'Hammer' is not in list
 
 Y en el caso de que busquemos algún elemento que existe más de una vez en la lista, el comando nos devolverá el primer elemento que encuentre con ese nombre.
 
-### Preferencia de un elemento
+### Pertenencia de un elemento
 
 En el caso de que quisiéramos comprobar si un elemento se encuentra en una lista, lo haríamos al igual que en los strings, usando el `in`:
 ```python
@@ -391,4 +391,178 @@ True
 
 >>> 'Hammer' in minecraft_objects
 False
+```
+
+### Longitud de una lista
+
+Para poder conocer cual es la longitud de una lista, podemos usar al igual que con un string, la función `len()`. Aunque como es lógico, sirve para conocer cuantos elementos posee la lista:
+
+```python
+>>> minecraft_objects = ['Pickaxe', 'Shovel', 'Sword', 'Axe']
+>>> len(minecraft_objects)
+4
+```
+
+### Número de ocurrencias
+
+Podemos también contar la cantidad de veces que aparece un elemento en una lista. Para ello usamos `count()` y entre las comillas colocamos el elemento que deseemos contar, probemos:
+
+```python
+>>> pokemons_in_my_team
+['Pikachu', 'Bulbasar', 'Squirtle', 'Squirtle', 'Pidgey', 'Nidoran']
+>>> pokemons_in_my_team.count('Squirtle')
+2
+```
+
+### Dividir una cadena de texto en lista
+
+Una de las acciones más importantes en lo que respecta a listas, es el poder dividir cadenas de textos usando el separador de nuestra preferencia con la función `split()`. A esta función con simplemente pasarle el separador que queramos usar en forma de string, nos convertirá  nuestro string en una lista. Veamos ejemplos:
+
+```python
+>>> minecraft_end_poem
+'And the game was over and the player woke up from the dream.'
+>>> minecraft_end_poem.split()
+['And', 'the', 'game', 'was', 'over', 'and', 'the', 'player', 'woke', 'up', 'from', 'the', 'dream.']
+
+>>> queen_songs
+'Seven Seas of Rhye / Sheer Heart Attack / Heaven for Everyone'
+>>> queen_songs.split('/')
+['Seven Seas of Rhye ', ' Sheer Heart Attack ', ' Heaven for Everyone']
+```
+
+Como hemos visto en el string 'minecraft_end_poem', al no pasarle ningún argumento a la función `split()`, esta divide de forma predeterminada el texto por los espacios.
+
+### Particionado de cadenas de texto
+
+Existe una forma un poco más elaborada para poder separar una cadena de texto, y esa es la función `partition()` . Esta lo que hace es coger algún argumento del string y usarlo como separador para dividir la cadena en tres partes: la parte de la izquierda, el separador, y la parte de la derecha. Esta como podemos debajo, devuelve una tupla:
+
+```python
+>>> text = '3 + 4'
+
+>>> text.partition('+')
+('3 ', '+', ' 4')
+```
+
+### Unir una lista en cadena de texto
+
+Teniendo una lista, podemos usarla para convertirla a string, uniendo todos sus elementos con un separador de nuestra preferencia. Esto se hace usando la función `join()`. Esta se construye de esta manera:
+
+![[Pasted image 20241121115055.png]]
+
+
+Veamos ahora unos ejemplos:
+
+```python
+>>> minecraft_end_poem
+['And', 'the', 'game', 'was', 'over', 'and', 'the', 'player', 'woke', 'up', 'from', 'the', 'dream.']
+>>> ' '.join(minecraft_end_poem)
+'And the game was over and the player woke up from the dream.'
+
+>>> pokemons_in_my_team
+ ['Pikachu', 'Bulbasar', 'Squirtle', 'Squirtle', 'Pidgey', 'Nidoran']
+>>> '-'.join(pokemons_in_my_team)
+'Pikachu-Bulbasar-Squirtle-Squirtle-Pidgey-Nidoran'
+```
+
+Como podemos ver, esta función es la opuesta a la anteriormente vista, `split()` 
+
+### Ordenar una lista
+
+Para ordenar una lista, tenemos tres opciones distintas en Python:
+
+- Conservando la lista original usando la función `sorted()`:
+```python
+>>> pokemons_in_my_team 
+['Pikachu', 'Bulbasar', 'Squirtle', 'Squirtle', 'Pidgey', 'Nidoran']
+>>> sorted(pokemons_in_my_team)
+['Bulbasar', 'Nidoran', 'Pidgey', 'Pikachu', 'Squirtle', 'Squirtle']
+```
+
+- Modificando la lista con la función `sort()`
+```python
+>>> pokemons_in_my_team 
+['Pikachu', 'Bulbasar', 'Squirtle', 'Squirtle', 'Pidgey', 'Nidoran']
+>>> pokemons_in_my_team.sort()
+>>> pokemons_in_my_team
+['Bulbasar', 'Nidoran', 'Pidgey', 'Pikachu', 'Squirtle', 'Squirtle']
+```
+
+Podemos también incluso añadir a la ecuación un parámetro booleano `reverse` con el fin de ordenar la lista al reves:
+
+```python
+>>> pokemons_in_my_team 
+['Pikachu', 'Bulbasar', 'Squirtle', 'Squirtle', 'Pidgey', 'Nidoran']
+>>> sorted(pokemons_in_my_team, reverse=True)
+['Squirtle', 'Squirtle', 'Pikachu', 'Pidgey', 'Nidoran', 'Bulbasar']
+```
+
+
+### Iterar sobre una cadena de texto
+
+Al igual que vimos en su momento con los strings, podemos iterar las listas elemento por elemento con la sentencia `for`:
+
+```python
+>>> pokemons_in_my_team
+['Bulbasar', 'Nidoran', 'Pidgey', 'Pikachu', 'Squirtle', 'Squirtle']
+
+>>> for pokemon in pokemons_in_my_team:
+...     print(pokemon)
+...
+Bulbasar
+Nidoran
+Pidgey
+Pikachu
+Squirtle
+Squirtle
+```
+
+Habrán veces que queramos iterar sobre una lista y queramos saber el índice de cada elemento iterado, para ello usaríamos en el texto que vayamos a iterar con for, la función `enumerate`:
+
+```python
+>>> pokemons_in_my_team
+['Bulbasar', 'Nidoran', 'Pidgey', 'Pikachu', 'Squirtle', 'Squirtle']
+
+>>> for i, pokemon in enumerate(pokemons_in_my_team):
+...     print(i, pokemon)
+...
+0 Bulbasar
+1 Nidoran
+2 Pidgey
+3 Pikachu
+4 Squirtle
+5 Squirtle
+```
+
+
+### Iterar sobre múltiples listas
+
+En Python es posible iterar sobre varias listas de forma paralela usando la función `zip()`. Esta hace que la listas se vayan juntando elemento a elemento. Como comparación podríamos usar una cremallera, la cual tiene dos lados los cuales se van juntado a medida que pasa la el zip
+
+![[Captura de pantalla 2024-11-21 122423.png]]
+
+Después de haber visto esta explicación pongamos algún ejemplo:
+
+```python
+>>> gen1_pokemons
+['Squirtle', 'Bulbasaur', 'Charmander']
+>>> gen2_pokemons
+['Cindaquil', 'Totodile', 'Chikorita']
+
+>>> for gen1_pokemon, gen2_pokemon in zip(gen1_pokemons, gen2_pokemons):
+...     print(gen1_pokemon, gen2_pokemon)
+...
+Squirtle Cindaquil
+Bulbasaur Totodile
+Charmander Chikorita
+```
+
+Debido a que `zip()` simplemente produce un iterador, si quisiéramos obtener una lista explícita con la combinación de listas, deberíamos construirla así:
+
+```python
+>>> gen1_pokemons
+['Squirtle', 'Bulbasaur', 'Charmander']
+>>> gen2_pokemons
+['Cindaquil', 'Totodile', 'Chikorita']
+>>> list(zip(gen1_pokemons, gen2_pokemons))
+[('Squirtle', 'Cindaquil'), ('Bulbasaur', 'Totodile'), ('Charmander', 'Chikorita')]
 ```
