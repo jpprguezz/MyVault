@@ -447,7 +447,7 @@ Existe una forma un poco más elaborada para poder separar una cadena de texto, 
 
 Teniendo una lista, podemos usarla para convertirla a string, uniendo todos sus elementos con un separador de nuestra preferencia. Esto se hace usando la función `join()`. Esta se construye de esta manera:
 
-![[Pasted image 20241121115055.png]]
+![[join.png]]
 
 
 Veamos ahora unos ejemplos:
@@ -538,7 +538,7 @@ Habrán veces que queramos iterar sobre una lista y queramos saber el índice de
 
 En Python es posible iterar sobre varias listas de forma paralela usando la función `zip()`. Esta hace que la listas se vayan juntando elemento a elemento. Como comparación podríamos usar una cremallera, la cual tiene dos lados los cuales se van juntado a medida que pasa la el zip
 
-![[Captura de pantalla 2024-11-21 122423.png]]
+![[zip.png]]
 
 Después de haber visto esta explicación pongamos algún ejemplo:
 
