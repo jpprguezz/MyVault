@@ -566,3 +566,292 @@ Debido a que `zip()` simplemente produce un iterador, si quisiéramos obtener un
 >>> list(zip(gen1_pokemons, gen2_pokemons))
 [('Squirtle', 'Cindaquil'), ('Bulbasaur', 'Totodile'), ('Charmander', 'Chikorita')]
 ```
+
+### Comparación de listas
+
+El compara listas en Python es una actividad muy sencilla, veámosla:
+
+```python
+>>> list1 = [2, 4, 6]
+>>> list2 = [2, 4, 8]
+>>> list1 < list2
+True
+```
+
+Como vemos, las lista 1 es menos que la lista 2 y esta comparación se hace de la siguiente manera: El elemento 0 y el elemento 1 en las dos listas son iguales, sin embargo en el 2, el elemento es diferente en ambas listas. Python lo que hace es comparar cual de los dos elementos es (en este caso) menor. Al ver que el elemento de la lista 1 es menor, ya considera esta lista menos que la 2.
+
+
+### ATENCIÓN al copiar
+
+El copiado de lista en Python es un paso muy importante que hay que tener en cuenta. Pongamos el siguiente ejemplo: 
+
+```python
+>>> gen1_pokemons = ['Squirtle', 'Bulbasaur', 'Charmander']
+>>> gen1_pokemons_copy = gen1_pokemons
+>>> gen1_pokemons[1] = 'Vulpix'
+>>> gen1_pokemons
+['Squirtle', 'Vulpix', 'Charmander']
+>>> gen1_pokemons_copy
+['Squirtle', 'Vulpix', 'Charmander']
+```
+
+Podemos ver que al cambiar cualquier elemento en una de las listas, se cambia en la otra también, pero: ¿por qué ocurre esto?. Esto pasa sencillamente porque al estar igualando una variable con la otra, la posición de memoria de las dos variables es la misma:
+
+```python
+>>> id(gen1_pokemons)
+1707288314560
+>>> id(gen1_pokemons_copy)
+1707288314560
+```
+
+Para que no ocurran estos problemas, tenemos dos sencillas opciones:
+
+- Hacer una copia con la función `copy()`
+```python
+>>> gen1_pokemons
+['Squirtle', 'Vulpix', 'Charmander']
+>>> copy_gen1_pokemons = gen1_pokemons.copy()
+>>> gen1_pokemons[1] = 'Weedle'
+>>> gen1_pokemons
+['Squirtle', 'Weedle', 'Charmander']
+>>> copy_gen1_pokemons
+['Squirtle', 'Vulpix', 'Charmander']
+```
+
+- Usando el troceado completo de listas, dándonos una copia desvinculada a la lista original
+
+```python
+>>> gen1_pokemons = ['Squirtle', 'Bulbasaur', 'Charmander']
+>>> copy_gen1_pokemons = gen1_pokemons[:]
+>>> gen1_pokemons[0] = 'Moltres'
+>>> copy_gen1_pokemons
+['Squirtle', 'Bulbasaur', 'Charmander']
+>>> gen1_pokemons
+['Moltres', 'Bulbasaur', 'Charmander']
+```
+
+### Veracidad múltiple
+
+Si bien hasta ahora hemos utilizado condicionales para comprobar datos, es verdad que existen otras maneras para poder logar el mismo objetivo y de forma más resumida. Hay dos funciones para ello, `all()` para comprobar que todas las condiciones son verdaderas, o `any()` para comprobar si hay alguna condición verdadera. Pongamos las siguientes condiciones para usarlas con nombre de pokémons:
+
+El nombre deberá:
+
+-  Comenzar con la letra "T"
+-  Debe contener la letra "a"
+-  La longitud del nombre debe ser de al menos 4 caracteres
+
+De forma común, este problema lo resolveríamos así:
+
+```python
+>>> pokemon_name = 'Tyranitar'
+>>> if len(pokemon_name) >= 4 and pokemon_name.startswith('T') and pokemon_name.count('a') >= 1:
+...     print('Valid name')
+... else:
+...     print('Not valid name')
+...
+Valid name
+```
+
+Pero hacer con veracidad múltiple usando `all()`, en este caso, sería así de fácil:
+
+```python
+>>> pokemon_name = 'Tyranitar'
+>>> enough_length_name = len(pokemon_name) >= 4
+>>> name_starts_correctly = pokemon_name.startswith('T')
+>>> enough_a = pokemon_name.count('a') >= 1
+>>> is_good_pokemon_name = all([enough_length_name, name_starts_correctly, enough_a])
+>>> if is_good_pokemon_name:
+...     print('Valid name')
+... else:
+...     print('Not valid name')
+...
+Valid name
+```
+
+Como podemos ver, esta opción hace el código más compacto y puede llegar a ser más manejable si hubieran muchas condiciones.
+
+También debemos tomar en cuenta el valor que tendría una lista vacía para estas dos funciones:
+
+```python
+>>> all([])
+True
+>>> any([])
+False
+```
+
+
+### Listas por compresión
+
+Las listas por compresión son una parte uy importante de Python, y es muy usado en el día a día. Estas establecen una forma compacta para poder crear listas basado en el modelo VLC (Value-Loop-Condition). Podemos verlo más a fondo en la siguiente imagen:
+
+![[lista_por_compresion.png]]
+
+Ahora veamos un ejemplo en el que convertimos un string con números en el, a una lista con los números pasados a enteros. La forma clasica sería esta:
+
+```python
+>>> values = '32,45,11,87,20,48'
+
+>>> int_values = []
+
+>>> for value in values.split(','):
+...     int_value = int(value)
+...     int_values.append(int_value)
+...
+
+>>> int_values
+[32, 45, 11, 87, 20, 48]
+```
+
+Mientras que la que usa lista por compresión sería así:
+
+```python
+>>> values = '32,45,11,87,20,48'
+
+>>> int_values = [int(value) for value in values.split(',')]
+
+>>> int_values
+[32, 45, 11, 87, 20, 48]
+```
+
+![[llistas-por-compresion-vs-forma-clasica.png]]
+
+Incluso dentro de las listas por compresión podemos colocar condiciones. Supongamos que queremos hacer el mismo código de antes pero que añada solo los números que empiezan por cuatro:
+
+```python
+>>> values = '32,45,11,87,20,48'
+
+>>> int_values = [int(v) for v in values.split(',') if v.startswith('4')]
+
+>>> int_values
+[45, 48]
+```
+
+Hasta podíamos usar bucles anidados. Veamos un ejemplo que combine una serie de valores:
+
+```python
+>>> values = '32,45,11,87,20,48'
+>>> svalues = values.split(',')
+
+>>> combinations = [f'{v1}x{v2}' for v1 in svalues for v2 in svalues]
+
+>>> combinations
+['32x32',
+ '32x45',
+ '32x11',
+ '32x87',
+ '32x20',
+ '32x48',
+ '45x32',
+ '45x45',
+ ...
+ '48x45',
+ '48x11',
+ '48x87',
+ '48x20',
+ '48x48']
+```
+
+
+### sys.argv
+
+Habrá veces que queramos ejecutar un programa desde la línea de comandos. Por ello podemos implementar en el programa una lista especial del módulo `sys` llamada `argv`. Esta lo que hace es permitirnos acceder a los argumentos que hayamos colocado en nuestro programa. Veamos su utilización en el siguiente programa que convierte un número decimal a una determinada base, ambos argumentos pasados por línea de comandos:
+
+```python
+import sys
+
+number = int(sys.argv[1])
+tobase = int(sys.argv[2])
+
+match tobase:
+    case 2:
+        result = f'{number:b}'
+    case 8:
+        result = f'{number:o}'
+    case 16:
+        result = f'{number:x}'
+    case _:
+        result = None
+
+if result is None:
+    print(f'Base {tobase} not implemented!')
+else:
+    print(result)
+```
+
+Al ejecutarlo obtenemos lo siguiente:
+
+```python
+$ python dec2base.py 65535 2
+1111111111111111
+```
+
+
+### Funciones matemáticas
+
+Python nos ofrece la posibilidad de usar tres funciones matemáticas basicas para obtener resultados:
+
+- Suma de todos los valores con `sum()`:
+```python
+>>> data = [5, 3, 2, 8, 9, 1]
+>>> sum(data)
+28
+```
+
+- Mínimo de todos los valores con `min()`:
+```python
+>>> data = [5, 3, 2, 8, 9, 1]
+>>> min(data)
+1
+```
+
+- Máximo de todos los valores con `max()`:
+```python
+>>> data = [5, 3, 2, 8, 9, 1]
+>>> max(data)
+9
+```
+
+
+### Listas de listas 
+
+Como hemos visto, las listas son estructurar que se componen de datos que se convierten en elementos. Pero no hemos hablado de que una lista, puede tener listas como elementos también. Pongamos por ejemplo el caso de que quisiéramos representar con listas, todos los pokémons que posee un PC dentro del juego, colocando todos los pokémons que se encuentran en cada una de las cajas:
+
+```python
+>>> box1 = ['Pikachu', 'Charmander', 'Squirtle', 'Bulbasaur', 'Eevee']
+>>> box2 = ['Chikorita', 'Cyndaquil', 'Totodile', 'Togepi', 'Mareep']
+>>> box3 = ['Torchic', 'Mudkip', 'Treecko', 'Ralts', 'Shroomish']
+```
+
+Ya teniendo nuestras listas formuladas, juntamos estas en una única lista:
+
+```python
+>>> pc = [box1, box2, box3]
+>>> pc
+[['Pikachu', 'Charmander', 'Squirtle', 'Bulbasaur', 'Eevee'], ['Chikorita', 'Cyndaquil', 'Totodile', 'Togepi', 'Mareep'], ['Torchic', 'Mudkip', 'Treecko', 'Ralts', 'Shroomish']]
+```
+
+Podemos acceder a los distintos elementos:
+
+```python
+>>> pc[1]
+['Chikorita', 'Cyndaquil', 'Totodile', 'Togepi', 'Mareep']
+>>> pc[2]
+['Torchic', 'Mudkip', 'Treecko', 'Ralts', 'Shroomish']
+```
+
+Y podemos recorrer el PC al completo si quisiéramos:
+
+```python
+>>> for box in pc:
+...     if isinstance(box, list):
+...             for pokemon in box:
+...                     print(pokemon, end=' ')
+...             print()
+...     else:
+...             print(pokemon)
+...
+Pikachu Charmander Squirtle Bulbasaur Eevee
+Chikorita Cyndaquil Totodile Togepi Mareep
+Torchic Mudkip Treecko Ralts Shroomish
+```
+
