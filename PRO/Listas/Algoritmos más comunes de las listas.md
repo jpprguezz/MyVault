@@ -1,4 +1,4 @@
-tPara hacer resolver cualquier problema, normalmente lo que se suele hacer es ir paso por paso para resolver los problemas. De hecho al intentar esto, nos daremos cuenta de que muchos de los ejercicios/problemas que se nos planten delante, siguen una esquemática que en muchos de los casos, se repite. A eso los podemos llamar algoritmos. Por ello en este archivo colocaré los algoritmos más comunes presentes en las listas de Python:
+Para hacer resolver cualquier problema, normalmente lo que se suele hacer es ir paso por paso para resolver los problemas. De hecho al intentar esto, nos daremos cuenta de que muchos de los ejercicios/problemas que se nos planten delante, siguen una esquemática que en muchos de los casos, se repite. A eso los podemos llamar algoritmos. Por ello en este archivo colocaré los algoritmos más comunes presentes en las listas de Python:
 
 
 #### Para búsqueda
