@@ -18,10 +18,32 @@ fav_cities = ['Tokio', 'Osaka', 'London', 'Madrid', 'Barcelona']
 
 ![[dot-product.png]]
 
-***Ejercicio "fcomp"***: Utilizando listas por comprensi´on, crea una lista que contenga el resultado de aplicar la funci´on f(x) = 3x + 2 para el rango de x dado en los valores de entrada.
+***Ejercicio "fcomp"***: Utilizando listas por comprensión, crea una lista que contenga el resultado de aplicar la funci´on f(x) = 3x + 2 para el rango de x dado en los valores de entrada.
 
 ![[fcomp.png|625]]
 
 ***Ejercicio "avg"***: Lea desde línea de comandos una serie de números y obtenga la media de dichos valores (redondeando a 2 cifras decimales).
 
 ![[avg.png]]
+
+***Ejercicio "max-value"***: Dada una lista de valores numéricos enteros, obtenga su valor máximo.
+
+![[max-value.png]]
+
+***Ejercicio "max-value-with-min"***:  Dada una lista de valores numéricos enteros, obtenga su valor máximo (usando la función min()).
+
+![[max-value-with-min.png]]
+
+***Ejercicio "min-value"***: Dada una lista de valores numéricos enteros, obtenga su valor mínimo.
+
+![[min-value.png]]
+
+***Ejercicio "min-value-with-max"***: Dada una lista de valores numéricos enteros, obtenga su valor mínimo (usando la función max()).
+
+![[min-value-with-max.png]]
+
+***Ejercicio "remove-dups"***: Dada una lista de números, genera otra lista donde se eliminen los valores duplicados
+
+![[remove-dups.png]]
+
+
