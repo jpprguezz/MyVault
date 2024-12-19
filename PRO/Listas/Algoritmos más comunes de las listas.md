@@ -250,5 +250,54 @@ for index in range(len(merged) - 1):
     temp_value = merged[index]
     merged[index] = merged[min_index]
     merged[min_index] = temp_value
+```
 
+#### Cualificando números.
+
+- Dado un número entero positivo, separa las cifras de millares por comas (como string).
+
+```python
+def run(number: int) -> str:
+    result = ''
+    n_str = str(number)
+    n_str = n_str[::-1]  # Revertimos el numero ya convertido a str
+    i = 0  # Este 0 equivale al inicio de el index que usaremos para colocar las comas en el numero
+    while i < len(n_str):  # Si el número es menos que el largo del string, funciona este while
+        if (i % 3 == 0 and i != 0):  # Si es divisible entre 3 (es decir, la cantidad de caracteres por los que colocaremos una coma) e i es disitinto a 0 (para que no haga conflicto con el inicio del index)
+            result += ','  # Añadimos una coma al string
+        result += n_str[i]  # Aqui se añade el siguiente numero
+        i += 1 # Se suma 1 punto en el contador
+    qnumber = result[::-1]  # Se vuelve a revertir la lista
+
+    return qnumber
+```
+
+#### Range flotante
+
+-  **Range flotante:** Escribe un programa Python que simule el comportamiento de la función “built-in” range() pero utilizando valores flotantes.
+
+```python
+def run(start: float, stop: float, step: float) -> list:
+    values = []  # Lista para guardar los numeros del range
+    while start < stop:  # Si el inicio es menor que el final (que siempre lo será hasta que llegue al número más cercano al final)
+        values.append(start)  # Añade el numero del inicio
+        start += step  # Añade un paso a star para que se vayan sumando hasta llegar al numero final
+    return values
+
+```
+
+
+#### Ver primer número duplicado
+
+- **Ver primer número duplicado**:
+```python
+def run(items: list) -> int | None:
+    seen_items = []
+    fdup = None
+    for item in items:
+        if item in seen_items:
+            fdup = item
+            break
+        else:
+            seen_items.append(item)
 ```
