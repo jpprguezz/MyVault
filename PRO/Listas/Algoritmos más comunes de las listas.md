@@ -153,3 +153,72 @@ def run(n: int) -> str:
         bin_repr.reverse()  # Se revierte la lista, porque el número se estaba generando al reves
         bin_repr = "".join(bin_repr)  # Y se une toda la lista de números
 ```
+
+
+#### Encontrar el primer elemento (número) no consecutivo
+
+- **Encontrar el primer elemento (número) no consecutivo**:
+
+```python
+def run(values: list) -> int:
+    if not values: # Si todos los valroes son consecutivos 
+        target = None
+    else: # Si no ejecuta el codigo de abajo
+        first_num = values[0] # Primer número de la lsita para comparar
+        target = None # Hacemos hipotesis de la variable
+        for num in values: # Recorremos la lista
+            if num != first_num: # Si el numero es diferente al primero
+                target = num # Target es ese número(el no consecutivo)
+                break # Y paramos de revisar
+            else:
+                first_num += 1 # Si no, pasamos de número, sumando 1 al contador
+```
+
+
+#### Recrear el como funciona un reloj
+
+- **Recrear el como funciona un reloj:** Dada una hora en formato HH:MM (como cadena de texto) y una cantidad de minutos (como valor entero), calcula la hora resultante (en formato HH:MM) si sumamos los minutos a la hora de entrada.
+
+```python
+def run(time: str, offset: int) -> str:
+    time = time.split(':')
+    h_offset = offset // 60 
+    min_offset = offset % 60
+
+    hours = h_offset + int(time[0])
+    mins = min_offset + int(time[1])
+
+    if mins > 60:
+        hours += mins // 60
+        mins -= 60
+    if hours > 24:
+        hours -= 24
+
+    final_time = f'{hours}:{mins}'
+```
+
+#### Subconjuntos en cascada
+
+- 
+```python
+def run(values: list, size: int) -> list:
+    # Inicializamos una lista vacía para almacenar los subconjuntos generados
+    cascading = []
+
+    # Validar que el tamaño de los subconjuntos sea válido
+    # Si 'size' es mayor que la longitud de 'values' o es menor o igual a 0, devolvemos una lista vacía
+    if size > len(values) or size <= 0:
+        return []
+
+    # Iteramos desde el índice 0 hasta (len(values) - size), inclusivo
+    # Esto asegura que solo se generen subconjuntos válidos de tamaño 'size'
+    for value in range(len(values) - size + 1):
+        # Extraemos un subconjunto desde el índice actual ('value') hasta 'value + size'
+        subset = values[value:value + size]
+        # Añadimos el subconjunto generado a la lista 'cascading'
+        cascading.append(subset)
+
+    # Devolvemos la lista con todos los subconjuntos generados
+    return cascading
+
+```
