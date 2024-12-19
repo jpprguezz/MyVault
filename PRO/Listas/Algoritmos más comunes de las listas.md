@@ -222,3 +222,33 @@ def run(values: list, size: int) -> list:
     return cascading
 
 ```
+
+
+#### Mezcla ordenada
+
+- **Mezcla ordenada**: Como datos de entrada se dispone de dos listas con valores num´ ericos que ya vienen ordenados. Obtenga una lista de salida con la mezcla de las dos listas de entrada (manteniendo el orden de los valores).
+
+```python
+# Combina ambas listas en una sola
+all_values = values1 + values2
+
+# Crea una nueva lista que inicialmente copia todos los elementos de 'all_values'
+merged = [num for num in all_values]
+
+# Recorre los elementos en 'merged' para eliminar duplicados
+for value in merged:
+    if merged.count(value) > 1:  # Si el elemento aparece más de una vez
+        merged.remove(value)  # Elimina uno de ellos
+
+# Ordena manualmente la lista 'merged' usando el algoritmo de selección
+for index in range(len(merged) - 1):
+    min_index = index  # Suponemos que el elemento actual es el menor
+    for index_2 in range(index + 1, len(merged)):  # Comparamos con el resto
+        if merged[min_index] > merged[index_2]:  # Si encontramos un elemento menor
+            min_index = index_2  # Actualizamos el índice del menor
+    # Intercambiamos el elemento actual con el menor encontrado
+    temp_value = merged[index]
+    merged[index] = merged[min_index]
+    merged[min_index] = temp_value
+
+```
